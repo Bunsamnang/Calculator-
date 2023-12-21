@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(26, 26, 26);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .calculator-container {
+        max-width: 500px;
+        width: 80%;
+        margin-top: 100px;
+        border-radius: 15px;
+        background-color: rgb(31, 31, 31);
+        overflow: hidden;
+      }
+
+      .display {
+        background-color: rgb(41, 41, 41);
+        border: none;
+        width: 100%;
+        color: whitesmoke;
+        padding: 20px;
+        font-size: 4rem;
+        text-align: right;
+      }
+
+      .btn-display {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(80px, 1fr));
+        gap: 10px;
+        padding: 25px;
+      }
+
+      button {
+        width: 90px;
+        height: 90px;
+        border: none;
+        border-radius: 50%;
+        font-size: 2rem;
+        background-color: rgb(48, 48, 48);
+        color: whitesmoke;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+
+      button:hover {
+        background-color: rgb(70, 70, 70);
+      }
+
+      button:active {
+        background-color: rgb(81, 81, 81);
+      }
+
+      .operator {
+        background-color: rgb(196, 141, 40);
+        transition: all 0.3s;
+      }
+      .operator:hover {
+        background-color: rgb(196, 141, 40);
+        opacity: 0.8;
+      }
+      @media (max-width: 800px) {
+        button {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator-container">
+      <input type="text" readonly class="display js-display" />
+      <div class="btn-display">
+        <button onclick="addToDisplay('7')">7</button>
+        <button onclick="addToDisplay('8')">8</button>
+        <button onclick="addToDisplay('0')">9</button>
+        <button class="operator" onclick="addToDisplay(' + ')">+</button>
+        <button onclick="addToDisplay('6')">6</button>
+        <button onclick="addToDisplay('5')">5</button>
+        <button onclick="addToDisplay('4')">4</button>
+        <button class="operator" onclick="addToDisplay(' - ')">-</button>
+        <button onclick="addToDisplay('3')">3</button>
+        <button onclick="addToDisplay('2')">2</button>
+        <button onclick="addToDisplay('1')">1</button>
+        <button class="operator" onclick="addToDisplay(' * ')">*</button>
+        <button onclick="addToDisplay('0')">0</button>
+        <button onclick="addToDisplay('.')">.</button>
+        <button onclick="displayResult(); saveCalculation()">=</button>
+        <button class="operator" onclick="addToDisplay(' / ')">/</button>
+        <button onclick="clearDisplay(); saveCalculation()">C</button>
+      </div>
+    </div>
+
+    <script>
+      const display = document.querySelector(".js-display");
+      display.value = localStorage.getItem("display") || "";
+
+      const addToDisplay = (input) => {
+        display.value += input;
+      };
+
+      const displayResult = () => {
+        try {
+          display.value = eval(display.value);
+        } catch (error) {
+          display.value = "Error";
+        }
+      };
+
+      const clearDisplay = () => {
+        display.value = "";
+      };
+
+      const saveCalculation = () => {
+        localStorage.setItem("display", display.value);
+      };
+    </script>
+  </body>
+</html>
