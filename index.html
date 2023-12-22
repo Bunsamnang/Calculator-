@@ -129,6 +129,67 @@
         display.value += input;
       };
 
+
+      document.body.addEventListener("keydown", (event) => {
+        if (event.key === "0") {
+          display.value += "0";
+        }
+        if (event.key === "1") {
+          display.value += "1";
+        }
+        if (event.key === "2") {
+          display.value += "2";
+        }
+        if (event.key === "3") {
+          display.value += "3";
+        }
+        if (event.key === "4") {
+          display.value += "4";
+        }
+        if (event.key === "5") {
+          display.value += "5";
+        }
+        if (event.key === "6") {
+          display.value += "6";
+        }
+        if (event.key === "7") {
+          display.value += "7";
+        }
+        if (event.key === "8") {
+          display.value += "8";
+        }
+        if (event.key === "9") {
+          display.value += "9";
+        }
+        if (event.key === ".") {
+          display.value += ".";
+        }
+        if (event.key === "+") {
+          display.value += "+";
+        }
+        if (event.key === "-") {
+          display.value += "-";
+        }
+        if (event.key === "*") {
+          display.value += "*";
+        }
+        if (event.key === "/") {
+          display.value += "/";
+          console.log(event);
+        }
+        if (event.key === "=" || event.key === "Enter") {
+          try {
+            display.value = eval(display.value);
+          } catch (error) {
+            display.value = "Error";
+          }
+        }
+        if (event.key === "c") {
+          clearDisplay();
+        }
+      });
+      
+
       const displayResult = () => {
         try {
           display.value = eval(display.value);
